@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥 HARUN GYM: PROGRAM & REHBER</title>
+    <title>🔥 RHINO GYM</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS kodları önceki versiyonla aynıdır */
+        /* --- GENEL VE DARK MODE AYARLARI --- */
         :root {
             --bg-dark: #121212;
             --card-bg: #1e1e1e;
-            --primary: #00e5ff; 
-            --accent: #ff0055;  
+            --primary: #00e5ff; /* Neon Mavi */
+            --accent: #ff0055;  /* Neon Pembe */
             --gold: #ffd700;
             --text-main: #ffffff;
             --text-sec: #b0b0b0;
@@ -46,20 +46,19 @@
             font-size: 1.1rem; 
             margin-top: 10px; 
             font-weight: 500;
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.4); 
         }
 
         /* --- FİLTRE MENÜSÜ --- */
         .filter-container {
             position: sticky;
             top: 0;
-            background-color: rgba(18, 18, 18, 0.95);
+            background-color: rgba(18, 18, 18, 0.98); 
             backdrop-filter: blur(10px);
-            padding: 15px;
+            padding: 10px; 
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px; 
             z-index: 100;
             border-bottom: 1px solid #333;
         }
@@ -68,11 +67,11 @@
             background: transparent;
             border: 2px solid var(--text-sec);
             color: var(--text-sec);
-            padding: 8px 20px;
+            padding: 6px 15px; 
             border-radius: 30px;
             cursor: pointer;
             font-family: 'Oswald', sans-serif;
-            font-size: 1rem;
+            font-size: 0.85rem; 
             transition: all 0.3s ease;
             text-transform: uppercase;
         }
@@ -88,67 +87,91 @@
         /* --- ANA İÇERİK YÖNETİMİ --- */
         #program-wrapper, #machine-guide-wrapper {
             max-width: 1400px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 20px auto; 
+            padding: 0 10px; 
         }
 
         /* --- MAKİNE KARTLARI (GRID) --- */
         .card-container-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 15px; 
         }
         
         /* Kart Stilleri */
-        .gym-card { background-color: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1px solid #333; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; position: relative; }
-        .gym-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); border-color: var(--accent); }
+        .gym-card { background-color: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; position: relative; }
+        .gym-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); border-color: var(--accent); }
         .card-accent { height: 5px; width: 100%; background: var(--primary); }
-        .gym-card[data-category*="gogus"] .card-accent { background: #ff4757; }
-        .gym-card[data-category*="sirt"] .card-accent { background: #2ed573; }
-        h3 { font-family: 'Oswald', sans-serif; font-size: 1.6rem; color: white; line-height: 1.2; }
-        .card-content { padding: 25px; flex-grow: 1; }
-        .info-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; border-left: 3px solid var(--text-sec); margin-bottom: 15px; }
-        .label { font-size: 0.75rem; color: var(--text-sec); text-transform: uppercase; margin-bottom: 3px; }
-        .text { font-size: 0.95rem; font-weight: 500; color: #eee; }
+        h3 { font-family: 'Oswald', sans-serif; font-size: 1.4rem; color: white; line-height: 1.2; }
+        .card-content { padding: 15px; flex-grow: 1; }
+        .info-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 15px; }
+
+        /* DETAYLI BİLGİ KUTUCUKLARI */
+        .info-item { background: rgba(255,255,255,0.05); padding: 8px; border-radius: 6px; border-left: 3px solid var(--text-sec); }
+        .info-item.focus { border-left-color: var(--gold); }
+        .info-item.tip { border-left-color: var(--primary); }
+        .info-item.warning { border-left-color: var(--accent); }
+
+        .label { font-size: 0.7rem; color: var(--text-sec); text-transform: uppercase; margin-bottom: 3px; }
+        .text { font-size: 0.85rem; font-weight: 500; color: #eee; }
         .video-btn {
             display: block; text-align: center; background: linear-gradient(45deg, #cc0000, #ff3333);
-            color: white; padding: 15px; text-decoration: none; font-weight: bold; font-family: 'Oswald', sans-serif;
-            letter-spacing: 1px; transition: 0.3s; border-top: 1px solid #333;
+            color: white; padding: 10px; text-decoration: none; font-weight: bold; font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px; transition: 0.3s; border-top: 1px solid #333; font-size: 0.9rem;
         }
 
-        /* --- PROGRAM ÇİZELGESİ STİLLERİ VE KULLANIM REHBERİ STİLLERİ Önceki Cevaplardan alınmıştır --- */
-        .program-schedule-container { background-color: var(--card-bg); border-radius: 15px; box-shadow: 0 0 25px rgba(0, 0, 0, 0.4); padding: 20px; }
-        .tab-buttons { display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 25px; border-bottom: 2px solid #333; }
-        .tab-button { background: transparent; border: none; color: var(--text-sec); padding: 12px 20px; cursor: pointer; font-family: 'Oswald', sans-serif; font-size: 1.1rem; text-transform: uppercase; border-bottom: 3px solid transparent; }
-        .day-content { display: none; padding: 20px 0; }
+        /* --- PROGRAM ÇİZELGESİ STİLLERİ --- */
+        .program-schedule-container { background-color: var(--card-bg); border-radius: 15px; padding: 15px; }
+        .tab-buttons { display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 15px; border-bottom: 2px solid #333; }
+        .tab-button { background: transparent; border: none; color: var(--text-sec); padding: 8px 15px; font-size: 0.9rem; text-transform: uppercase; border-bottom: 3px solid transparent; }
+        .tab-button.active { color: var(--primary); border-bottom-color: var(--accent); font-weight: 500; }
+        .day-content { display: none; padding: 10px 0; }
         .day-content.active { display: block; }
-        .muscle-group { font-family: 'Oswald', sans-serif; font-size: 1.6rem; color: var(--accent); margin-bottom: 15px; border-left: 4px solid var(--primary); padding-left: 10px; }
-        .exercise-item { background-color: #242424; padding: 15px; border-radius: 8px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
-        .video-link-btn-prog { background-color: var(--accent); color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 0.85rem; font-weight: 500; white-space: nowrap; }
+        .muscle-group { font-family: 'Oswald', sans-serif; font-size: 1.4rem; color: var(--accent); margin-bottom: 10px; padding-left: 10px; border-left: 4px solid var(--primary); }
+        .exercise-item { background-color: #242424; padding: 12px; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+        .video-link-btn-prog { background-color: var(--accent); color: white; padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 500; white-space: nowrap; }
 
-        .usage-guide { max-width: 1200px; margin: 60px auto 40px auto; padding: 40px; background-color: var(--card-bg); border-radius: 20px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); }
-        .guide-title { font-family: 'Oswald', sans-serif; color: var(--gold); font-size: 2rem; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 30px; }
-        .guide-section h4 { font-family: 'Oswald', sans-serif; color: var(--primary); font-size: 1.4rem; margin-top: 25px; margin-bottom: 10px; border-left: 5px solid var(--accent); padding-left: 10px; }
-        .guide-section ul li::before { content: "• "; color: var(--success); font-weight: bold; margin-right: 5px; }
-
+        /* --- YASAL UYARI VE FOOTER --- */
+        .legal-footer {
+            max-width: 1200px;
+            margin: 40px auto 10px auto;
+            padding: 20px;
+            background-color: #0d0d0d;
+            border-top: 1px solid #333;
+            text-align: center;
+        }
+        .legal-footer p {
+            color: #777;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            margin: 5px 0;
+        }
+        .legal-footer .warning-icon {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        /* MOBİL İYİLEŞTİRMELER (Aynı kaldı) */
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
             .filter-btn { font-size: 0.85rem; padding: 6px 10px; }
-            .usage-guide { padding: 20px; }
-            .card-container-grid { grid-template-columns: 1fr; }
+            .program-schedule-container { padding: 10px; }
+            .exercise-item { flex-direction: column; align-items: flex-start; }
+            .exercise-info { width: 100%; margin-bottom: 8px; }
+            .video-link-btn-prog { width: 100%; text-align: center; margin-top: 8px; }
+            .card-container-grid { grid-template-columns: 1fr; gap: 10px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>HARUN GYM</h1>
+    <h1>RHINO</h1>
     <p class="subtitle">Zirveye Giden Yol Stresle Değil, Keyifle Açılır. Mükemmeliyet baskısını bırak, nefes al ve her tekrarın tadını çıkar. Güvenle ilerle!</p>
 </header>
 
 <div class="filter-container">
-    <button class="filter-btn active" data-filter="all">TÜM KARTLAR</button>
-    <button class="filter-btn" data-filter="program">PROGRAM</button>
+    <button class="filter-btn active" data-filter="program">PROGRAM</button>
     <button class="filter-btn" data-filter="gogus">GÖĞÜS</button>
     <button class="filter-btn" data-filter="sirt">SIRT</button>
     <button class="filter-btn" data-filter="omuz">OMUZ</button>
@@ -157,78 +180,87 @@
     <button class="filter-btn" data-filter="karin">KARIN</button>
 </div>
 
-<div id="program-wrapper" style="display: none;">
+<div id="program-wrapper" style="display: block;">
     <div class="program-schedule-container">
         <div class="tab-buttons">
-            <button class="tab-button active" onclick="openDay(event, 'Pazartesi')">Pazartesi</button>
-            <button class="tab-button" onclick="openDay(event, 'Salı')">Salı</button>
+            <button class="tab-button active" onclick="openDay(event, 'Pazartesi')">Pazartesi (Pull-1)</button>
+            <button class="tab-button" onclick="openDay(event, 'Salı')">Salı (Push-1)</button>
             <button class="tab-button" onclick="openDay(event, 'Çarşamba')">Çarşamba</button>
-            <button class="tab-button" onclick="openDay(event, 'Perşembe')">Perşembe</button>
-            <button class="tab-button" onclick="openDay(event, 'Cuma')">Cuma</button>
-            <button class="tab-button" onclick="openDay(event, 'Cumartesi')">Cumartesi</button>
+            <button class="tab-button" onclick="openDay(event, 'Perşembe')">Perşembe (Bacak)</button>
+            <button class="tab-button" onclick="openDay(event, 'Cuma')">Cuma (Pull-2)</button>
+            <button class="tab-button" onclick="openDay(event, 'Cumartesi')">Cumartesi (Push-2)</button>
         </div>
 
         <div id="Pazartesi" class="day-content active">
-            <h2 class="muscle-group">GÖĞÜS, OMUZ (ÖN-YAN), ARKA KOL</h2>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">1. Bench Press</div><div class="reps-sets">2x8 + 12 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Bench+Press+Form" target="_blank" class="video-link-btn-prog"▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">2. Dumbbell Fly</div><div class="reps-sets">2x8-10 tekrar (Min. kilo seçimi)</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Dumbbell+Fly+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">3. Dumbbell Incline Chest Press</div><div class="reps-sets">2x8 + 12 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Incline+Dumbbell+Press" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">4. Dumbbell Shoulder Press</div><div class="reps-sets">2x8 + 8 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Dumbbell+Shoulder+Press" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">5. Dumbbell Lateral Raise</div><div class="reps-sets">3x12-15 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Lateral+Raise+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">6. Rope Pushdown</div><div class="reps-sets">3x12-15 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Rope+Pushdown+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">7. Cable Kick Back</div><div class="reps-sets">2x12 + 12 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Cable+Kickback+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <h2 class="muscle-group">PAZARTESİ: SIRT & PAZI (PULL 1)</h2>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">1. Lat Pulldown</div><div class="reps-sets">3x12-10-8</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Lat+Pulldown+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">2. Cable Row</div><div class="reps-sets">3x12-10-8</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Cable+Row+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">3. Single Arm Lat Pulldown</div><div class="reps-sets">3x12-10-8</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Single+Arm+Lat+Pulldown+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">4. Dumbbell Row</div><div class="reps-sets">3x10-10-10</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Dumbbell+Row+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">5. Rope Pullover (Straight Arm)</div><div class="reps-sets">3x15</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Rope+Pullover+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">6. Biceps Curl</div><div class="reps-sets">3x15-12-12</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Biceps+Curl+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">7. Plank</div><div class="reps-sets">4x Max Saniye</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Plank+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
         </div>
 
         <div id="Salı" class="day-content">
-            <h2 class="muscle-group">SIRT, KOL</h2>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">1. Lat Pulldown</div><div class="reps-sets">3x10-8-8 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Lat+Pulldown+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">2. Deadlift</div><div class="reps-sets">2x8-10 setlere başlamadan 2 set ısınma seti</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Deadlift+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">3. Seated Cable Row</div><div class="reps-sets">2x10-12 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Seated+Cable+Row+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">4. Close Grip Lat Pulldown</div><div class="reps-sets">2x10-12 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Close+Grip+Lat+Pulldown+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">5. Dumbbell Row (Tek Kol)</div><div class="reps-sets">2x10+8 tekrar (Azaldıkça kilo arttıralım)</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Dumbbell+Row+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">6. One Arm Biceps Curl</div><div class="reps-sets">3x12 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+One+Arm+Biceps+Curl+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">7. Dumbbell Hammer Curl</div><div class="reps-sets">3x12-10-8 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Hammer+Curl+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="note-box">Bu günün sonunda, programınızdaki gibi Cardio ve Karın çalışması yapabilirsiniz.</div>
+            <h2 class="muscle-group">SALI: GÖĞÜS & OMUZ & ARKA KOL (PUSH 1)</h2>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">1. Dumbbell Press</div><div class="reps-sets">3x12-10-8</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Dumbbell+Press+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">2. Dumbbell Incline Press</div><div class="reps-sets">3x12-10-8</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Incline+Dumbbell+Press" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">3. Machine Fly</div><div class="reps-sets">3x12</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Machine+Fly+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">4. Machine Shoulder Press</div><div class="reps-sets">3x12-10-8</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Machine+Shoulder+Press+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">5. Rear Delt Fly Machine</div><div class="reps-sets">3x15</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Rear+Delt+Fly+Machine+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">6. Triceps Push Down</div><div class="reps-sets">3x12</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Triceps+Push+Down+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
         </div>
 
         <div id="Çarşamba" class="day-content">
-            <h2 class="muscle-group">DİNLENME GÜNÜ</h2>
-            <div class="note-box" style="border-color: var(--success);">Programınızdaki gibi bugün **OFF** günüdür. Aktif dinlenme veya hafif tempo **Cardio/Karın** çalışması yapabilirsiniz.</div>
+            <h2 class="muscle-group">ÇARŞAMBA: DİNLENME GÜNÜ</h2>
+            <div class="off-day-card" style="text-align: center; padding: 40px; background-color: #2a2a2a; border-radius: 12px;">
+                <h3>OFF Day</h3>
+                <p>Bugün ağırlık antrenmanı yok.</p>
+                <p style="color: var(--accent); font-weight: bold;">İstersen Karın antrenmanı ve Cardio yapabilirsin.</p>
+            </div>
         </div>
 
         <div id="Perşembe" class="day-content">
-            <h2 class="muscle-group">BACAK</h2>
-            <div class="exercise-item"><div class="exercise-name">1. Leg Extension</div><div class="reps-sets">3x12-10-8 (Tepe noktada 3 sn bekle) - İzometrik mix</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Leg+Extension+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">2. Hack Squat</div><div class="reps-sets">2x8 + 10 (En dibe inilecek şekilde kiloyu ayarla)</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Hack+Squat+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">3. Leg Press</div><div class="reps-sets">2x12 + 12 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Leg+Press+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">4. Hyperextension (Back Extension)</div><div class="reps-sets">2x10 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Hyperextension+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">5. Calf Raise (Kalf)</div><div class="reps-sets">3x12 + 10 + 8 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Calf+Raise+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <h2 class="muscle-group">PERŞEMBE: BACAK</h2>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">1. Leg Curl</div><div class="reps-sets">3x15-12-12</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Leg+Curl+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">2. Barbell Squat</div><div class="reps-sets">3x8-8-8</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Barbell+Squat+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">3. Leg Press</div><div class="reps-sets">3x15-12-10</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Leg+Press+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">4. Leg Extension</div><div class="reps-sets">3x15</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Leg+Extension+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">5. Dumbbell Sumo Deadlift</div><div class="reps-sets">3x15-12-10</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Dumbbell+Sumo+Deadlift+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">6. Barbell Calf Raise</div><div class="reps-sets">3x15</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Barbell+Calf+Raise+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="note-box" style="margin-top: 25px;">
+                Off day/ istersen karın antrenmanı ve cardio yapabilirsin.
+            </div>
         </div>
 
         <div id="Cuma" class="day-content">
-            <h2 class="muscle-group">OMUZ, GÖĞÜS, ARKA KOL</h2>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">1. Dumbbell Shoulder Press</div><div class="reps-sets">2x8 + 10 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Dumbbell+Shoulder+Press+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">2. Cable Lateral Raise</div><div class="reps-sets">3x12-15 tekrar aralığı</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Cable+Lateral+Raise+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">3. Machine Shoulder Press</div><div class="reps-sets">2x10-10 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Machine+Shoulder+Press+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">4. Dumbbell Shrug</div><div class="reps-sets">3x12-10-10 (Tepe noktada 1 sn bekle)</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Dumbbell+Shrug+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">5. Incline Machine Bench Press</div><div class="reps-sets">2x8-10 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Incline+Machine+Press+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">6. Pec Deck Fly</div><div class="reps-sets">3x5 (Max ağırlık güzel formda)</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Pec+Deck+Fly+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">7. Cable Triceps Pushdown</div><div class="reps-sets">3x12 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Cable+Triceps+Pushdown+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">8. Rope Pullover (Straight Arm Pulldown)</div><div class="reps-sets">2x12-12 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Rope+Pullover+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <h2 class="muscle-group">CUMA: SIRT & PAZI (PULL 2)</h2>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">1. Close Grip Lat Pulldown</div><div class="reps-sets">3x15-12-12</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Close+Grip+Lat+Pulldown+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">2. Barbell Row</div><div class="reps-sets">3x8-8-8</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Barbell+Row+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">3. Dumbbell Row</div><div class="reps-sets">3x12-10-8</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Dumbbell+Row+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">4. Rack Pull (veya Hyper Extension)</div><div class="reps-sets">3x15-12-10</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Rack+Pull+or+Hyperextension+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">5. Rope Pullover (Straight Arm)</div><div class="reps-sets">3x15</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Rope+Pullover+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">6. Dumbbell Curl</div><div class="reps-sets">3x15-12-10</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Dumbbell+Curl+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">7. Plank</div><div class="reps-sets">4x Max Saniye</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Plank+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">8. Crunch (Yarım Mekik)</div><div class="reps-sets">3x15</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Crunch+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">9. Leg Raise</div><div class="reps-sets">3x15</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Leg+Raise+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
         </div>
 
         <div id="Cumartesi" class="day-content">
-            <h2 class="muscle-group">SIRT, KOL</h2>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">1. Barbell Row</div><div class="reps-sets">2x10-8 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Barbell+Row+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">2. Single Arm Lat Pulldown</div><div class="reps-sets">2x10-10 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Single+Arm+Lat+Pulldown+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">3. Two Hand Row (Cable Row)</div><div class="reps-sets">2x12-10 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Two+Hand+Cable+Row+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">4. Cable Biceps Curl</div><div class="reps-sets">3x12-10-8 tekrar</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Cable+Biceps+Curl+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
-            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">5. Dumbbell Curl</div><div class="reps-sets">3x10-12 tekrar aralığı</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Dumbbell+Biceps+Curl+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <h2 class="muscle-group">CUMARTESİ: OMUZ & GÖĞÜS & ARKA KOL (PUSH 2)</h2>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">1. Dumbbell Shoulder Press</div><div class="reps-sets">3x15-12-10</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Dumbbell+Shoulder+Press+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">2. Dumbbell Lateral Raise</div><div class="reps-sets">3x15</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Dumbbell+Lateral+Raise+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">3. Dumbbell Shrug (veya Barbell Shrug)</div><div class="reps-sets">3x15-12-12</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Shrug+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">4. Cable Lateral Raise</div><div class="reps-sets">3x15-12-10</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Cable+Lateral+Raise+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">5. Machine Fly</div><div class="reps-sets">3x15-12-10</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Machine+Fly+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">6. Machine Chest Press</div><div class="reps-sets">3x15-12-10</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Machine+Chest+Press+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
+            <div class="exercise-item"><div class="exercise-info"><div class="exercise-name">7. Rope Pushdown</div><div class="reps-sets">3x15-12-10</div></div><a href="https://www.youtube.com/results?search_query=Deltabolic+Rope+Pushdown+Form" target="_blank" class="video-link-btn-prog">▶️ Form Videosu</a></div>
         </div>
     </div>
 </div>
 
-<div id="machine-guide-wrapper" style="display: block;">
+<div id="machine-guide-wrapper" style="display: none;">
     <div class="card-container-grid">
         
         <div class="gym-card" data-category="gogus">
@@ -236,13 +268,27 @@
             <div class="card-content">
                 <div class="card-header"><h3>Pec Deck Fly</h3><span class="badge">Makine</span></div>
                 <div class="info-grid">
-                    <div class="info-item focus"><span class="label">🎯 Hedef</span><span class="text">İç Göğüs Çizgisi</span></div>
-                    <div class="info-item tip"><span class="label">💡 KURULUM</span><span class="text">Oturma yerini, kollarınızın omuz hizasında olacağı şekilde ayarlayın. Omuzlarınızı arkaya kilitleyin.</span></div>
-                    <div class="info-item tip"><span class="label">✅ HAREKET</span><span class="text">Kolları birleştirirken göğsü sıkın. Hareketi omuzlardan değil, göğüs kaslarından başlatın.</span></div>
-                    <div class="info-item warning"><span class="label">⚠️ ODAK</span><span class="text">Dirsekleri tam düz yapmayın. Daima hafif kırık tutarak eklem baskısını azaltın.</span></div>
+                    <div class="info-item focus"><span class="label">🎯 HEDEF KAS</span><span class="text">İç Göğüs Çizgisi</span></div>
+                    <div class="info-item"><span class="label">⚙️ KURULUM</span><span class="text">Oturma yerini, kollarınızın omuz hizasında olacağı şekilde ayarlayın. Omuzlarınızı arkaya kilitleyin.</span></div>
+                    <div class="info-item"><span class="label">✅ UYGULAMA</span><span class="text">Kolları birleştirirken göğsü sıkın. Hareketi omuzlardan değil, göğüs kaslarından başlatın.</span></div>
+                    <div class="info-item warning"><span class="label">🚨 KURAL</span><span class="text">Dirsekleri tam düz yapmayın. Daima hafif kırık tutarak eklem baskısını azaltın.</span></div>
                 </div>
             </div>
             <a href="https://www.youtube.com/results?search_query=Deltabolic+Pec+Deck+Fly+Form" target="_blank" class="video-btn"><span>🔍</span> VİDEOLARI LİSTELE</a>
+        </div>
+        
+        <div class="gym-card" data-category="gogus">
+            <div class="card-accent"></div>
+            <div class="card-content">
+                <div class="card-header"><h3>Cable Low Fly</h3><span class="badge">Kablo</span></div>
+                <div class="info-grid">
+                    <div class="info-item focus"><span class="label">🎯 HEDEF KAS</span><span class="text">Üst Göğüs İzole</span></div>
+                    <div class="info-item"><span class="label">⚙️ KURULUM</span><span class="text">Kabloları en alt seviyeye ayarlayın. Vücudu hafif öne eğin.</span></div>
+                    <div class="info-item"><span class="label">✅ UYGULAMA</span><span class="text">Kolları yukarı doğru (omuz hizasına) kaldırın. Göğsü tepe noktada sıkın.</span></div>
+                    <div class="info-item warning"><span class="label">🚨 KURAL</span><span class="text">Kaldırırken omuzları yukarı (trapezlere) çekmeyin.</span></div>
+                </div>
+            </div>
+            <a href="https://www.youtube.com/results?search_query=Deltabolic+Cable+Low+Crossover+Form" target="_blank" class="video-btn"><span>🔍</span> VİDEOLARI LİSTELE</a>
         </div>
 
         <div class="gym-card" data-category="gogus">
@@ -388,15 +434,15 @@
         <div class="gym-card" data-category="bacak">
             <div class="card-accent"></div>
             <div class="card-content">
-                <div class="card-header"><h3>Machine Calf Raise</h3><span class="badge">Makine</span></div>
+                <div class="card-header"><h3>Hip Abduction</h3><span class="badge">Makine</span></div>
                 <div class="info-grid">
-                    <div class="info-item focus"><span class="label">🎯 Hedef</span><span class="text">Baldır (Kalf) Kasları</span></div>
-                    <div class="info-item tip"><span class="label">💡 KURULUM</span><span class="text">Topukları platformun kenarından aşağıya sallayın (Tam esneme).</span></div>
-                    <div class="info-item tip"><span class="label">✅ HAREKET</span><span class="text">Ayak parmaklarının üzerinde maksimum yüksekliğe çıkın ve tepede 1 saniye sıkın.</span></div>
-                    <div class="info-item warning"><span class="label">⚠️ ODAK</span><span class="text">Hızlı zıplamayın. İndirmeyi ve kaldırmayı yavaş yapın.</span></div>
+                    <div class="info-item focus"><span class="label">🎯 Hedef</span><span class="text">Yan Kalça (Gluteus Medius)</span></div>
+                    <div class="info-item tip"><span class="label">💡 KURULUM</span><span class="text">Sırtınızı pede tam dayayın. Ağırlığı dışa doğru iterken gövdenizi sabit tutun.</span></div>
+                    <div class="info-item tip"><span class="label">✅ HAREKET</span><span class="text">Dizleri yavaşça dışa doğru itin. En sonda kalçayı kasın.</span></div>
+                    <div class="info-item warning"><span class="label">⚠️ ODAK</span><span class="text">Hareketi hızlı yapmayın. Öne doğru eğilerek hile yapmaktan kaçının.</span></div>
                 </div>
             </div>
-            <a href="https://www.youtube.com/results?search_query=Deltabolic+Machine+Calf+Raise" target="_blank" class="video-btn"><span>🔍</span> VİDEOLARI LİSTELE</a>
+            <a href="https://www.youtube.com/results?search_query=Deltabolic+Hip+Abduction+Machine+Form" target="_blank" class="video-btn"><span>🔍</span> VİDEOLARI LİSTELE</a>
         </div>
 
         <div class="gym-card" data-category="omuz">
@@ -525,15 +571,43 @@
             <a href="https://www.youtube.com/results?search_query=Deltabolic+Cable+Woodchopper" target="_blank" class="video-btn"><span>🔍</span> VİDEOLARI LİSTELE</a>
         </div>
         
+        <div class="gym-card" data-category="karin">
+            <div class="card-accent"></div>
+            <div class="card-content">
+                <div class="card-header"><h3>Captain's Chair</h3><span class="badge">Makine</span></div>
+                <div class="info-grid">
+                    <div class="info-item focus"><span class="label">🎯 Hedef</span><span class="text">Alt Karın İzole</span></div>
+                    <div class="info-item tip"><span class="label">💡 KURULUM</span><span class="text">Sırtı pede tam yaslayın. Dirsekleri yumuşak tutun.</span></div>
+                    <div class="info-item tip"><span class="label">✅ UYGULAMA</span><span class="text">Dizleri göğüse doğru çekerek alt karnı kasın. Bacakları sadece kaldırıp indirmeyin.</span></div>
+                    <div class="info-item warning"><span class="label">⚠️ KURAL</span><span class="text">Sallanmaktan (kipping) kaçının. Kontrolü tamamen karında tutun.</span></div>
+                </div>
+            </div>
+            <a href="https://www.youtube.com/results?search_query=Deltabolic+Captain's+Chair+Leg+Raise+Form" target="_blank" class="video-btn"><span>🔍</span> VİDEOLARI LİSTELE</a>
+        </div>
+
+        <div class="gym-card" data-category="bacak">
+            <div class="card-accent"></div>
+            <div class="card-content">
+                <div class="card-header"><h3>Hip Abduction</h3><span class="badge">Makine</span></div>
+                <div class="info-grid">
+                    <div class="info-item focus"><span class="label">🎯 Hedef</span><span class="text">Yan Kalça (Gluteus Medius)</span></div>
+                    <div class="info-item tip"><span class="label">💡 KURULUM</span><span class="text">Sırtı pede tam dayayın. Ağırlığı dışa doğru iterken gövdeyi sabitleyin.</span></div>
+                    <div class="info-item tip"><span class="label">✅ UYGULAMA</span><span class="text">Dizleri yavaşça dışa doğru itin. En sonda kalçayı kasın.</span></div>
+                    <div class="info-item warning"><span class="label">⚠️ KURAL</span><span class="text">Öne doğru eğilerek hile yapmaktan kaçının. Sadece kalça kasları çalışmalı.</span></div>
+                </div>
+            </div>
+            <a href="https://www.youtube.com/results?search_query=Deltabolic+Hip+Abduction+Machine+Form" target="_blank" class="video-btn"><span>🔍</span> VİDEOLARI LİSTELE</a>
+        </div>
+        
     </div>
 </div>
 
 <div class="usage-guide">
-    <h2 class="guide-title">HARUN GYM UYGULAMA REHBERİ VE PÜF NOKTALARI</h2>
+    <h2 class="guide-title">RHINO GYM UYGULAMA REHBERİ VE PÜF NOKTALARI</h2>
 
     <div class="guide-section">
         <h4>1. Temel Felsefe: Makine ve Süreklilik</h4>
-        <p>Makineler ve kablolar, serbest ağırlıklara göre **izolasyon** (tek bir kası çalıştırma) ve **gerilim sürekliliği** (TUT - Time Under Tension) açısından daha üstündür. Harun Gym rehberi, mükemmel formu tekrarlamayı kolaylaştıran makine odaklı tekniklere odaklanır.</p>
+        <p>Makineler ve kablolar, serbest ağırlıklara göre **izolasyon** (tek bir kası çalıştırma) ve **gerilim sürekliliği** (TUT - Time Under Tension) açısından daha üstündür. Bu rehber, mükemmel formu tekrarlamayı kolaylaştıran makine odaklı tekniklere odaklanır.</p>
         <ul>
             <li>**Süreklilik (En Büyük Sır):** En iyi program, en uzun süre uygulayabildiğin programdır. Başarısızlık değil, vazgeçmek programı bozar.</li>
             <li>**Aşamalı Yüklenme (Progressive Overload):** Kas gelişimi için her hafta ya biraz daha fazla ağırlık kaldır (programa not al), ya da aynı ağırlıkla daha fazla tekrar yap.</li>
@@ -556,8 +630,13 @@
         <p>Spor, sadece fiziksel bir aktivite değil, zihinsel bir mücadeledir. Başarının %80'i salonda kalma süreniz ve azminizdir:</p>
         <ul>
             <li>**Başarısızlık Veridir:** Bir tekrarı çıkaramamak başarısızlık değil, vücudunuzun o günkü kapasitesidir. Bunu programınıza not alın ve bir sonraki hafta kapasitenizi aşmaya çalışın.</li>
-            <li>**Kendine İyi Davran:** En kötü antrenman, hiç yapmamaktan iyidir. Kendine karşı nazik ol ve her salon girişini bir zafer olarak gör. Senin Harun Gym yolculuğun sadece sana ait!</li>
+            <li>**Kendine İyi Davran:** En kötü antrenman, hiç yapmamaktan iyidir. Kendine karşı nazik ol ve her salon girişini bir zafer olarak gör. Senin RHINO yolculuğun sadece sana ait!</li>
         </ul>
+    </div>
+    
+    <div class="legal-footer">
+        <p class="warning-icon">⚠️ Yasal Uyarı / Feragatname</p>
+        <p>Bu site (RHINO GYM), kişisel antrenman rehberi olarak tasarlanmıştır ve profesyonel tıbbi veya fitness tavsiyesi yerine geçmez. Yeni bir egzersiz programına başlamadan önce daima bir uzmana veya doktora danışın. Tüm hareketleri kendi riskinizle ve doğru formda yaptığınızdan emin olun.</p>
     </div>
 </div>
 
@@ -588,9 +667,9 @@
         const programWrapper = document.getElementById('program-wrapper');
         const machineGuideWrapper = document.getElementById('machine-guide-wrapper');
 
-        // Varsayılan: Programı gizle, kartları göster
-        programWrapper.style.display = 'none';
-        machineGuideWrapper.style.display = 'block';
+        // Varsayılan: Programı göster, kartları gizle
+        programWrapper.style.display = 'block';
+        machineGuideWrapper.style.display = 'none';
 
         // Pazartesi'yi program açıldığında aktif et (İç tab sistemi)
         const pazartesiButton = document.querySelector('.tab-buttons .tab-button');
@@ -637,8 +716,8 @@
             });
         });
         
-        // Başlangıçta tüm kartları göster (TÜM KARTLAR butonu aktif)
-        document.querySelector('.filter-btn[data-filter="all"]').click();
+        // Başlangıçta PROGRAM butonunu aktif et
+        document.querySelector('.filter-btn[data-filter="program"]').click();
     });
 </script>
 
